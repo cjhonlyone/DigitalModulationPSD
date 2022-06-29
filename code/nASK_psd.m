@@ -1,0 +1,9 @@
+function psd = nASK_psd(nASK, bps, fc, fftaxis)
+askset = ([1:nASK]-1)./(nASK-1);
+Tb = 1/bps;
+T = log2(nASK)*Tb;
+Eavg = sum(askset.^2)/nASK;
+Aavg = sum(askset)/nASK;
+fnorm = fftaxis-fc;
+% psd = (Eavg-Aavg^2)*T*(sinc(fnorm*T).^2) + Aavg^2*mydirac(fnorm);
+psd = (Eavg-Aavg^2)*T*(sinc(fnorm*T).^2);

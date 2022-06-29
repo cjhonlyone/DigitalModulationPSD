@@ -1,0 +1,838 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+
+\usepackage[UTF8]{ctex}
+\usepackage{listings}
+\usepackage{fontspec} % 定制字体
+% \newfontfamily\menlo{Menlo}
+\usepackage{xcolor} % 定制颜色
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\lstdefinestyle{c-style}
+{
+    language=c,
+    basicstyle=\footnotesize\ttfamily,  % size of fonts used for the code
+    keywordstyle=\color{blue},     % keyword style
+    % identifierstyle=\color{red},
+    commentstyle=\color{mygreen},  % comment style
+    frame=single,
+    backgroundcolor=\color{white},      % choose the background color
+    columns=fullflexible,
+    tabsize=4,
+    breaklines=true,               % automatic line breaking only at whitespace
+    captionpos=b,                  % sets the caption-position to bottom
+    escapeinside={\%*}{*)},        % if you want to add LaTeX within your code
+    stringstyle=\color{mymauve}\ttfamily,  % string literal style
+    rulesepcolor=\color{red!20!green!20!blue!20}
+}
+
+\definecolor{vgreen}{RGB}{104,180,104}
+\definecolor{vblue}{RGB}{49,49,255}
+\definecolor{vorange}{RGB}{255,143,102}
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
+\lstdefinestyle{verilog-style}
+{
+    language=Verilog,
+    basicstyle=\footnotesize\ttfamily,
+    keywordstyle=\color{vblue},
+    identifierstyle=\color{black},
+    commentstyle=\color{vgreen},
+    frame=single,
+    % numbers=left,
+    % numberstyle=\tiny\color{black},
+    % numbersep=10pt,
+    tabsize=4,
+    moredelim=*[s][\colorIndex]{[}{]},
+    literate=*{:}{:}1
+}
+
+\lstdefinestyle{Matlab-style}
+{
+	 language=Matlab,%
+    %basicstyle=\color{red},
+    breaklines=true,%
+    morekeywords={matlab2tikz},
+    keywordstyle=\color{blue},%
+    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+    identifierstyle=\color{black},%
+    stringstyle=\color{mylilas},
+    commentstyle=\color{mygreen},%
+    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+    numbers=left,%
+    numberstyle={\tiny \color{black}},% size of the numbers
+    numbersep=9pt, % this defines how far the numbers are from the text
+    emph=[1]{for,end,break},emphstyle=[1]\color{red} %some words to emphasise
+    %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+
+\makeatletter
+\newcommand*\@lbracket{[}
+\newcommand*\@rbracket{]}
+\newcommand*\@colon{:}
+\newcommand*\colorIndex{%
+    \edef\@temp{\the\lst@token}%
+    \ifx\@temp\@lbracket \color{black}%
+    \else\ifx\@temp\@rbracket \color{black}%
+    \else\ifx\@temp\@colon \color{black}%
+    \else \color{vorange}%
+    \fi\fi\fi
+}
+\makeatother
+
+\usepackage{trace}
+\usepackage{url}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=blue,      
+    urlcolor=blue,
+    citecolor=cyan,
+}
+\title{\huge \textbf{调制信号功率谱分析}}
+\author{曹嘉辉}
+\date{Edit 2022.6.18}
+\begin{document}
+
+\maketitle
+
+github page: \url{https://github.com/cjhonlyone}
+% \hypertarget{header-n0}{%
+% \section{CRC校验一探究竟}\label{header-n0}}
+
+\tableofcontents
+
+\newpage
+\hypertarget{header-n3}{%
+\subsection{1. 原理}\label{header-n3}}
+
+\hypertarget{header-n4}{%
+\subsubsection{1.1 随机过程}\label{header-n4}}
+
+\hypertarget{header-n5}{%
+\subsubsection{1.2 Gambler's Ruin Problem（赌徒破产问题）}\label{header-n5}}
+庄家输掉所有筹码的概率\\
+庄家有$n$个筹码，每次有概率$p$赢得一个筹码，或者概率$q(q=1-p)$输掉一个筹码。庄家输掉所有钱后，即终止游戏。假设各次赌博都是独立的，求庄家把所有筹码输光的概率。\\
+设$f[n], n=0,1,2...\infty$为庄家把拥有的n个筹码全部输掉的的概率。\\
+那么有以下两个临界值：\\
+$f[0]=1$（初始筹码为0时，代表输光了，概率为1）\\
+$f[\infty]=0$（初始筹码为无限时，不可能输光，概率为0）\\
+当前筹码的个数只跟前一次筹码的个数相关，则有递推公式，\\
+\begin{equation}
+\begin{aligned}
+f[n] = pf[n+1] + qf[n-1]\\
+\end{aligned}
+\end{equation}
+已知$p+q=1$，利用高中的数列求解方法有，
+\begin{equation}
+\begin{aligned}
+pf[n] + qf[n] &= pf[n+1] + qf[n-1]\\
+pf[n+1] - pf[n] &= qf[n] - qf[n-1]\\
+f[n+1] - f[n] &= \frac{q}{p}(f[n] - f[n-1])\\
+\end{aligned}
+\end{equation}
+可以写出\\
+\begin{equation}
+\begin{aligned}
+f[n] - f[n-1] &= \frac{q}{p}(f[n-1] - f[n-2])\\
+f[n-1] - f[n-2] &= \frac{q}{p}(f[n-2] - f[n-3])\\
+\vdots\\
+f[3] - f[2] &= \frac{q}{p}(f[2] - f[1])\\
+f[2] - f[1] &= \frac{q}{p}(f[1] - f[0])\\
+\end{aligned}
+\end{equation}
+根据递推关系有\\
+\begin{equation}
+\begin{aligned}
+f[n] - f[n-1] &= (\frac{q}{p})^{n-1}(f[1] - f[0])\\
+f[n-1] - f[n-2] &= (\frac{q}{p})^{n-2}(f[1] - f[0])\\
+&\vdots\\
+f[3] - f[2] &= (\frac{q}{p})^{2}(f[1] - f[0])\\
+f[2] - f[1] &= \frac{q}{p}(f[1] - f[0])\\
+\end{aligned}
+\end{equation}
+将上面一组式子左右两边相加\\
+\begin{equation}
+\begin{aligned}
+f[n] = f[0]+(1 + \frac{q}{p} +  (\frac{q}{p})^{2} + \cdots +(\frac{q}{p})^{n-1})(f[1] - f[0])\\
+\end{aligned}
+\end{equation}
+利用等比数列求和公式与$f[0]=1$\\
+\begin{equation}
+f[n] =\left\{
+\begin{aligned}
+&1+\frac{1-(\frac{q}{p})^n}{1-\frac{q}{p}}(f[1] - 1), &\frac{q}{p} \neq 1 \\
+&1+n(f[1]-1), &\frac{q}{p} = 1 \\
+\end{aligned}
+\right.
+\end{equation}
+因为$f[\infty]=0$，可解得\\
+\begin{equation}
+f[1] =\left\{
+\begin{aligned}
+&\frac{q}{p}, &\frac{q}{p} < 1 \\
+&1, &\frac{q}{p} \geq 1 \\
+\end{aligned}
+\right.
+\end{equation}
+带入上式有\\
+\begin{equation}
+f[n] =\left\{
+\begin{aligned}
+&(\frac{q}{p})^n, & q<p\\
+&1, & q \geq p \\
+\end{aligned}
+\right.
+\end{equation}
+\begin{itemize}
+\item
+  当 $q < p$ 时，$p$相同时，庄家钱越多，输光筹码的概率越小
+\item
+  当 $q \geq p$ 时，庄家必然输光筹码
+\end{itemize}
+
+赌徒赢得N个筹码的概率\\
+一个赌徒初始时有$n$个筹码，每次有概率$p$赢得一个筹码，或者概率$q(q=1-p)$输掉一个筹码。赌徒赢得$N$个筹码后，或者输掉所有钱后，即终止游戏。假设各次赌博都是独立的，求赌徒在输掉初始筹码前赢得$N$个筹码的概率。\\
+设$f[n], n=0,1,2...\infty$为赌徒在输掉初始筹码$n$前，赢得$N$个筹码的概率。\\
+那么有以下两个临界值：\\
+$f[0]=0$（初始筹码为0时，无法参与赌博，概率为0）\\
+$f[N]=1$（初始筹码为无限时，不可能输光，概率为1）\\
+当前筹码的个数只跟前一次筹码的个数相关，则有递推公式，\\
+\begin{equation}
+\begin{aligned}
+f[n] = pf[n+1] + qf[n-1]\\
+\end{aligned}
+\end{equation}
+已知$p+q=1$，利用高中的数列求解方法有，
+\begin{equation}
+\begin{aligned}
+pf[n] + qf[n] &= pf[n+1] + qf[n-1]\\
+pf[n+1] - pf[n] &= qf[n] - qf[n-1]\\
+f[n+1] - f[n] &= \frac{q}{p}(f[n] - f[n-1])\\
+\end{aligned}
+\end{equation}
+可以写出\\
+\begin{equation}
+\begin{aligned}
+f[n] - f[n-1] &= \frac{q}{p}(f[n-1] - f[n-2])\\
+f[n-1] - f[n-2] &= \frac{q}{p}(f[n-2] - f[n-3])\\
+\vdots\\
+f[3] - f[2] &= \frac{q}{p}(f[2] - f[1])\\
+f[2] - f[1] &= \frac{q}{p}(f[1] - f[0])\\
+\end{aligned}
+\end{equation}
+根据递推关系有\\
+\begin{equation}
+\begin{aligned}
+f[n] - f[n-1] &= (\frac{q}{p})^{n-1}(f[1] - f[0])\\
+f[n-1] - f[n-2] &= (\frac{q}{p})^{n-2}(f[1] - f[0])\\
+&\vdots\\
+f[3] - f[2] &= (\frac{q}{p})^{2}(f[1] - f[0])\\
+f[2] - f[1] &= \frac{q}{p}(f[1] - f[0])\\
+\end{aligned}
+\end{equation}
+将上面一组式子左右两边相加\\
+\begin{equation}
+\begin{aligned}
+f[n] = f[0]+(1 + \frac{q}{p} +  (\frac{q}{p})^{2} + \cdots +(\frac{q}{p})^{n-1})(f[1] - f[0])\\
+\end{aligned}
+\end{equation}
+利用等比数列求和公式与$f[0]=0$\\
+\begin{equation}
+f[n] =\left\{
+\begin{aligned}
+&\frac{1-(\frac{q}{p})^n}{1-\frac{q}{p}} f[1], &\frac{q}{p} \neq 1 \\
+&nf[1], &\frac{q}{p} = 1 \\
+\end{aligned}
+\right.
+\end{equation}
+因为$f[N]=1$，可解得\\
+\begin{equation}
+f[1] =\left\{
+\begin{aligned}
+&\frac{1-\frac{q}{p}}{1-(\frac{q}{p})^N}, &\frac{q}{p} \neq 1 \\
+&\frac{1}{N}, &\frac{q}{p} = 1 \\
+\end{aligned}
+\right.
+\end{equation}
+带入上式有\\
+\begin{equation}
+f[n] =\left\{
+\begin{aligned}
+&\frac{1-(\frac{q}{p})^n}{1-(\frac{q}{p})^N}, &\frac{q}{p} \neq 1 \\
+&\frac{n}{N}, &\frac{q}{p} = 1 \\
+\end{aligned}
+\right.
+\end{equation}
+当$N\to\infty$时\\
+\begin{equation}
+f[n] =\left\{
+\begin{aligned}
+&1-(\frac{q}{p})^n, & q<p\\
+&0, & q \geq p \\
+\end{aligned}
+\right.
+\end{equation}
+\begin{itemize}
+\item
+  当 $q < p$ 时，$p$相同时，本金越多，赌徒赢的概率越大
+\item
+  当 $q \geq p$ 时，赌徒无法完成目标
+\end{itemize}
+
+\hypertarget{header-n12}{%
+\subsubsection{1.2 循环自相关函数}\label{header-n12}}
+
+\hypertarget{header-n13}{%
+\subsubsection{1.3 功率谱密度与自相关函数}\label{header-n13}}
+
+\hypertarget{header-n16}{%
+\subsection{2 一些典型信号的功率谱密度}\label{header-n16}}
+
+\hypertarget{header-n21}{%
+\subsubsection{2.1 离散时间脉冲串}\label{header-n21}}
+$a_k$为离散时间序列，$-\infty<k<\infty$。\\
+离散冲击函数（Kronecker Delta Function）为
+\begin{equation}
+\delta[n] =\left\{
+\begin{aligned}
+&1, n=0, \\
+&0, n=others.
+\end{aligned}
+\right.
+\end{equation}
+
+离散时间脉冲串的时域表示如下
+\begin{equation}
+\begin{aligned}
+x[n] &= \sum\limits_{k=-\infty}^{\infty} a_k \delta[n+k] \\
+\end{aligned}
+\end{equation}
+根据自相关函数的定义有
+\begin{equation}
+\begin{aligned}
+R[k] &= E[x[n]x[n-k]]\\
+&= E[\sum\limits_{m=-\infty}^{\infty} a_m \delta[n-m] \sum\limits_{j=-\infty}^{\infty} a_j \delta[n-j+k]]\\
+&= E[\sum\limits_{m=-\infty}^{\infty} \sum\limits_{j=-\infty}^{\infty} a_m a_j \delta[n-m] \delta[n-j+k]]\\
+&\overset{j=m+k}= E[\sum\limits_{m=-\infty}^{\infty} a_m a_{m+k} \delta[n-m]]\\
+&= E[a_n a_{n-k}]\\
+\end{aligned}
+\end{equation}
+时间平均代替集平均 \\
+\begin{equation}
+\begin{aligned}
+R[k] &= \lim\limits_{N \to \infty} \frac{1}{2N}\sum\limits_{n=-N}^{N} a_n a_{n-k}\\
+\end{aligned}
+\end{equation}
+
+\hypertarget{header-n22}{%
+\subsubsection{2.2 连续时间脉冲串}\label{header-n22}}
+
+$a_k$为离散时间序列，$-\infty<k<\infty$。\\
+连续冲击函数（Dirac Delta Function）为
+\begin{equation}
+\delta(t) =\left\{
+\begin{aligned}
+&\infty, t=0, \\
+&0, t=others.
+\end{aligned}
+\right.
+\end{equation}
+连续时间脉冲串的时域表示如下，$t_0$是在$[0,T)$内均匀分布的随机变量。\\
+\begin{equation}
+\begin{aligned}
+x(t) &= \sum\limits_{k=-\infty}^{\infty} a_k \delta(t-kT_b-t_0) \\
+\end{aligned}
+\end{equation}
+根据自相关函数的定义有\\
+\begin{equation}
+\begin{aligned}
+R(\tau) &= E[x(t)x(t+\tau)]\\
+&= \lim\limits_{N \to \infty} \frac{1}{2NT_b} \int_{-NT_b}^{NT_b} x(t)x(t+\tau) dt\\
+&= \lim\limits_{N \to \infty} \frac{1}{2NT_b} \int_{-NT_b}^{NT_b} \sum\limits_{n=-N}^{N} a_n \delta(t-nT_b) \sum\limits_{j=-N}^{N} a_j \delta(t-jT_b+\tau)dt\\
+&= \lim\limits_{N \to \infty} \frac{1}{2NT_b} \int_{-NT_b}^{NT_b} \sum\limits_{n=-N}^{N} \sum\limits_{j=-N}^{N} a_n a_j \delta(t-nT_b) \delta(t-jT_b+\tau)dt\\
+&= \lim\limits_{N \to \infty} \frac{1}{2NT_b} \sum\limits_{n=-N}^{N} \sum\limits_{j=-N}^{N} a_n a_j \int_{-NT_b}^{NT_b} \delta(t-nT_b) \delta(t-jT_b+\tau) dt\\
+&= \lim\limits_{N \to \infty} \frac{1}{2NT_b} \sum\limits_{n=-N}^{N} \sum\limits_{j=-N}^{N} a_n a_j \delta(\tau-(j-n)T_b)\\
+&\overset{j=n+k}= \lim\limits_{N \to \infty} \frac{1}{2NT_b} \sum\limits_{n=-N}^{N} \sum\limits_{k=-N}^{N} a_n a_{n+k} \delta(\tau-kT_b)\\
+&= \frac{1}{T_b} \sum\limits_{k=-\infty}^{\infty} \lim\limits_{N \to \infty} \frac{1}{2N} \sum\limits_{n=-N}^{N} a_n a_{n+k} \delta(\tau-kT_b)\\
+&= \frac{1}{T_b} \sum\limits_{k=-\infty}^{\infty} \rho[k] \delta(\tau-kT_b)\\
+\end{aligned}
+\end{equation}
+在这里
+\begin{equation}
+\begin{aligned}
+\rho[k] &= \lim\limits_{N \to \infty} \frac{1}{2N} \sum\limits_{n=-N}^{N} a_n a_{n+k}\\
+&= E[a_n a_{n-k}]
+\end{aligned}
+\end{equation}
+再换一种推导方式
+\begin{equation}
+\begin{aligned}
+R(\tau) &= E[x(t)x(t+\tau)]\\
+&= E[\sum\limits_{n=-\infty}^{\infty} a_n \delta(t-nT_b) \sum\limits_{j=-\infty}^{\infty} a_j \delta(t-jT_b+\tau) ] \\
+&= E[\sum\limits_{n=-\infty}^{\infty} \sum\limits_{j=-\infty}^{\infty} a_n a_j \delta(t-nT_b) \delta(t-jT_b+\tau) ] \\
+&= E[\sum\limits_{k=-\infty}^{\infty} \sum\limits_{n=-\infty}^{\infty} \sum\limits_{j=-\infty}^{\infty} a_n a_j \delta(t-nT_b) \delta(t-jT_b+kT_b) \delta(\tau-kT_b)] \\
+&\overset{j=n+k}= E[\sum\limits_{k=-\infty}^{\infty} \sum\limits_{n=-\infty}^{\infty} a_n a_{n+k} \delta(t-nT_b) \delta(\tau-kT_b)] \\
+&= \lim\limits_{N \to \infty} \frac{1}{2NT_b} \int_{-NT_b}^{NT_b} \sum\limits_{k=-N}^{N} \sum\limits_{n=-N}^{N} a_n a_{n+k} \delta(t-nT_b) \delta(\tau-kT_b) dt \\
+&= \frac{1}{T_b} \sum\limits_{k=-\infty}^{\infty} \lim\limits_{N \to \infty} \frac{1}{2N} \sum\limits_{n=-N}^{N} a_n a_{n+k} \delta(\tau-kT_b)\\
+&= \frac{1}{T_b} \sum\limits_{k=-\infty}^{\infty} \rho[k] \delta(\tau-kT_b)\\
+\end{aligned}
+\end{equation}
+
+\begin{equation}
+\begin{aligned}
+\rho[0] &= E[a_n^2]\\
+&= D[a_n] + E[a_n]^2\\
+&= \sigma_A^2 + \mu_A^2\\
+\end{aligned}
+\end{equation}
+
+还可以推导出$R(\tau)$的另一种表示形式，重新考虑自相关函数内部$n,j$的二重求和
+\begin{equation}
+\begin{aligned}
+&E[\sum\limits_{n=-\infty}^{\infty} \sum\limits_{j=-\infty}^{\infty} a_n a_j \delta(t-nT_b-t_0) \delta(t-jT_b+\tau-t_0) ]\\
+=&E[\sum\limits_{n=-\infty}^{\infty} a_n^2 \delta(t-nT_b-t_0) \delta(t-nT_b+\tau-t_0)]+\\
+&E[\sum\limits_{n=-\infty}^{\infty} \sum\limits_{\substack{j=-\infty\\j\neq n}}^{\infty} a_n a_j \delta(t-nT_b-t_0) \delta(t-jT_b+\tau-t_0)]\\
+=&\sum\limits_{n=-\infty}^{\infty} E[a_n^2] E[\delta(t-nT_b-t_0) \delta(t-nT_b+\tau-t_0)]+\\
+&\sum\limits_{n=-\infty}^{\infty} \sum\limits_{\substack{j=-\infty\\j\neq n}}^{\infty} E[a_n a_j] E[\delta(t-nT_b-t_0) \delta(t-jT_b+\tau-t_0)]\\
+\end{aligned}
+\end{equation}
+对于上式的第一项，求$t_0$在$[0,T_b)$之间的集平均有，
+\begin{equation}
+\begin{aligned}
+&\sum\limits_{n=-\infty}^{\infty} E[a_n^2] E[\delta(t-nT_b-t_0) \delta(t-nT_b+\tau-t_0)]\\
+=&E[a_n^2] \sum\limits_{n=-\infty}^{\infty} \frac{1}{T_b} \int_{0}^{T_b}\delta(t-nT_b-t_0) \delta(t-nT_b+\tau-t_0) d t_0\\
+\end{aligned}
+\end{equation}
+令$u=t-nT_b+\tau-t_0$
+\begin{equation}
+\begin{aligned}
+&= E[a_n^2] \frac{1}{T_b} \sum\limits_{n=-\infty}^{\infty} \int_{t-nT_b+\tau-T_b}^{t-nT_b+\tau}\delta(u-\tau) \delta(u) du\\
+&= E[a_n^2] \frac{1}{T_b} \int_{-\infty}^{\infty}\delta(u-\tau) \delta(u) du\\
+&= E[a_n^2] \frac{1}{T_b} \delta(\tau)\\
+\end{aligned}
+\end{equation}
+对于第二项，求$t_0$在$[0,T_b)$之间的集平均有，
+\begin{equation}
+\begin{aligned}
+&\sum\limits_{n=-\infty}^{\infty} \sum\limits_{\substack{j=-\infty\\j\neq n}}^{\infty} E[a_n a_j] E[\delta(t-nT_b-t_0) \delta(t-jT_b+\tau-t_0)]\\
+=&E[a_n]^2 \sum\limits_{n=-\infty}^{\infty} \sum\limits_{\substack{j=-\infty\\j\neq n}}^{\infty} \frac{1}{T_b} \int_{0}^{T_b}\delta(t-nT_b-t_0) \delta(t-jT_b+\tau-t_0)) d t_0\\
+\end{aligned}
+\end{equation}
+令$u=t-jT_b+\tau-t_0$
+\begin{equation}
+\begin{aligned}
+&= E[a_n]^2 \frac{1}{T_b} \sum\limits_{n=-\infty}^{\infty} \sum\limits_{\substack{j=-\infty\\j\neq n}}^{\infty} \int_{t-jT_b+\tau-T_b}^{t-jT_b+\tau}\delta(u-\tau+(j-n)T_b) \delta(u) du\\
+\end{aligned}
+\end{equation}
+因为积分内只与离散序号的差相关，令$m=j-n$
+\begin{equation}
+\begin{aligned}
+&= E[a_n]^2 \frac{1}{T_b} \sum\limits_{n=-\infty}^{\infty} \sum\limits_{\substack{m=-\infty\\m\neq 0}}^{\infty} \int_{t-(m+n)T_b+\tau-T_b}^{t-(m+n)T_b+\tau} \delta(u-\tau+mT_b) \delta(u) du\\
+&= E[a_n]^2 \frac{1}{T_b} \sum\limits_{\substack{m=-\infty\\m\neq 0}}^{\infty} \sum\limits_{n=-\infty}^{\infty} \int_{t-(m+n)T_b+\tau-T_b}^{t-(m+n)T_b+\tau} \delta(u-\tau+mT_b) \delta(u) du\\
+&= E[a_n]^2 \frac{1}{T_b} \sum\limits_{\substack{m=-\infty\\m\neq 0}}^{\infty} \int_{-\infty}^{\infty}\delta(u-\tau+mT_b) \delta(u) du\\
+&= E[a_n]^2 \frac{1}{T_b} \sum\limits_{\substack{m=-\infty\\m\neq 0}}^{\infty} \delta(\tau-mT_b)\\
+\end{aligned}
+\end{equation}
+所以，$R(\tau)$可以表示为
+\begin{equation}
+\begin{aligned}
+R(\tau) &= E[a_n^2]\frac{1}{T_b} \delta(\tau) + E[a_n]^2 \frac{1}{T_b} \sum\limits_{\substack{m=-\infty\\m\neq 0}}^{\infty} \delta(\tau-mT_b)\\
+&= (E[a_n^2]- E[a_n]^2) \frac{1}{T_b} \delta(\tau) + E[a_n]^2 \frac{1}{T_b} \sum\limits_{\substack{m=-\infty}}^{\infty} \delta(\tau-mT_b)
+\end{aligned}
+\end{equation}
+功率谱密度为\\
+\begin{equation}
+\begin{aligned}
+S(f) &= \frac{1}{T_b} [(E[a_n^2]- E[a_n]^2) + E[a_n]^2 \frac{1}{T_b} \sum\limits_{\substack{k=-\infty}}^{\infty} \delta(f-\frac{k}{T_b})]\\
+\end{aligned}
+\end{equation}
+
+
+\hypertarget{header-n23}{%
+\subsubsection{2.3 脉冲串与码元的关系}\label{header-n23}}
+连续时间脉冲串的时域表示如下
+\begin{equation}
+\begin{aligned}
+x(t) &= \sum\limits_{k=-\infty}^{\infty} a_k \delta(t-kT_b) \\
+\end{aligned}
+\end{equation}
+成型脉冲与冲击串卷积即可得到连续码元的波形\\
+\begin{equation}
+\begin{aligned}
+y(t) &= p(t) \ast x(t) \\
+&= \sum\limits_{k=-\infty}^{\infty} a_k p(t-kT_b) \\
+\end{aligned}
+\end{equation}
+由随机过程通过线性系统前后的功率谱关系可知，
+\begin{equation}
+\begin{aligned}
+S_y(f) &= 	{\left| S_p(f) \right|}^2 S_x(f) \\
+\end{aligned}
+\end{equation}
+
+定义\\
+\begin{equation}
+\begin{aligned}
+sinc(x) &= \frac{sin(x)}{x} \\
+\end{aligned}
+\end{equation}
+
+
+
+对于非归零码（NRZ）一般有
+\begin{equation}
+p(t) =\left\{
+\begin{aligned}
+&1, & -T_b/2 < t < T_b/2\\
+&0, & others \\
+\end{aligned}
+\right.
+\end{equation}
+\begin{equation}
+\begin{aligned}
+p(f) &= \frac{sin(\pi f T_b)}{\pi f}\\
+&=  T_b sinc(\pi f T_b)\\
+{\left| S_p(f) \right|}^2 & = T_b^2 sinc^2(\pi f T_b)
+\end{aligned}
+\end{equation}
+
+
+对于归零码（RZ）一般有
+\begin{equation}
+p(t) =\left\{
+\begin{aligned}
+&1, & -T_b/4 < t < T_b/4\\
+&0, & others \\
+\end{aligned}
+\right.
+\end{equation}
+\begin{equation}
+\begin{aligned}
+p(f) &= \frac{sin(\pi f T_b/2)}{\pi f}\\
+&=  \frac{T_b}{2} sinc(\pi f T_b/2)\\
+{\left| S_p(f) \right|}^2 & = \frac{T_b^2}{4} sinc^2(\pi f T_b/2)
+\end{aligned}
+\end{equation}
+
+对于样本间独立的二进制序列${a_k}$，有
+\begin{equation}
+\rho[n] =\left\{
+\begin{aligned}
+&E[a_n^2], n = 0\\
+&E^2[a_n], n \neq 0 \\
+\end{aligned}
+\right.
+\end{equation}
+
+\hypertarget{header-n24}{%
+\subsubsection{2.4 单极性码}\label{header-n24}}
+定义${a_k}$
+\begin{equation}
+a_k =\left\{
+\begin{aligned}
+&1, P(a_k=1) = p\\
+&0, P(a_k=0) = 1-p \\
+\end{aligned}
+\right.
+\end{equation}
+
+\begin{equation}
+\begin{aligned}
+E[a_n] &= 1\times p + 0\times(1-p)=p\\
+E[a_n^2] &= 1\times p + 0\times(1-p)=p\\
+D[a_n] &= E[a_n^2] - E^2[a_n]=p-p^2\\
+\end{aligned}
+\end{equation}
+
+
+
+对于更一般的情况，$p = 0.5$的条件下，
+\begin{equation}
+\rho[n] =\left\{
+\begin{aligned}
+&\frac{1}{2}, n = 0\\
+&\frac{1}{4}, n \neq 0 \\
+\end{aligned}
+\right.
+\end{equation}
+
+单极性$NRZ$码的自相关函数为\\
+\begin{equation}
+\begin{aligned}
+R_x(\tau) &= \frac{1}{4 T_b} [\sum\limits_{k=-\infty}^{\infty} \delta(\tau-kT_b) + \delta(\tau)]\\
+\end{aligned}
+\end{equation}
+
+\begin{equation}
+\begin{aligned}
+S_x(f) &= \frac{1}{4 T_b} [\frac{1}{T_b} \sum\limits_{k=-\infty}^{\infty} \delta(f-\frac{k}{T_b}) + 1]\\
+\end{aligned}
+\end{equation}
+
+\begin{equation}
+\begin{aligned}
+S_{ynrz}(f) &= {\left| S_p(f) \right|}^2 S_x(f) \\
+&= \frac{T_b}{4} sinc^2(\pi f T_b) [\frac{1}{T_b}\sum\limits_{k=-\infty}^{\infty} \delta(f-\frac{k}{T_b}) + 1]\\
+&= \sum\limits_{k=-\infty}^{\infty} \frac{1}{4} sinc^2(\pi f T_b) \delta(f-\frac{k}{T_b}) + \frac{T_b}{4} sinc^2(\pi f T_b)\\
+&= \frac{1}{4} [\delta(f) + T_b sinc^2(\pi f T_b)]\\
+\end{aligned}
+\end{equation}
+
+单极性$RZ$码的自相关函数为\\
+\begin{equation}
+\begin{aligned}
+S_{yrz}(f) &= {\left| S_p(f) \right|}^2 S_x(f) \\
+&= \frac{T_b}{16} sinc^2(\pi f T_b/2) [\frac{1}{T_b}\sum\limits_{k=-\infty}^{\infty} \delta(f-\frac{k}{T_b}) + 1]\\
+&= \sum\limits_{k=-\infty}^{\infty} \frac{1}{16} sinc^2(\pi f T_b/2) \delta(f-\frac{k}{T_b}) + \frac{T_b}{16} sinc^2(\pi f T_b/2)\\
+&= \sum\limits_{k=-\infty}^{\infty} \frac{1}{16} sinc^2(\pi k/2) + \frac{T_b}{16} sinc^2(\pi f T_b/2)\\
+\end{aligned}
+\end{equation}
+
+\hypertarget{header-n25}{%
+\subsubsection{2.5 双极性码}\label{header-n25}}
+定义${a_k}$
+\begin{equation}
+a_k =\left\{
+\begin{aligned}
+&1, P(a_k=1) = p\\
+&-1, P(a_k=-1) = 1-p \\
+\end{aligned}
+\right.
+\end{equation}
+
+\begin{equation}
+\begin{aligned}
+E[a_n] &= 1\times p - 1\times(1-p)=2p-1\\
+E[a_n^2] &= 1\times p + 1\times(1-p)=1\\
+D[a_n] &= E[a_n^2] - E^2[a_n]=4(p-p^2)\\
+\end{aligned}
+\end{equation}
+
+对于更一般的情况，$p = 0.5$的条件下，
+\begin{equation}
+\rho[n] =\left\{
+\begin{aligned}
+1, n = 0\\
+0, n \neq 0 \\
+\end{aligned}
+\right.
+\end{equation}
+
+双极性$NRZ$码的自相关函数为\\
+\begin{equation}
+\begin{aligned}
+R_{x}(\tau) &= \frac{1}{T_b} \delta(\tau)\\
+\end{aligned}
+\end{equation}
+
+\begin{equation}
+\begin{aligned}
+S_{x}(f) &= \frac{1}{T_b}\\
+\end{aligned}
+\end{equation}
+
+\begin{equation}
+\begin{aligned}
+S_{ynrz}(f) &= {\left| S_p(f) \right|}^2 S_x(f) \\
+&= T_b sinc^2(\pi f T_b) \\
+\end{aligned}
+\end{equation}
+
+双极性$RZ$码的功率谱密度函数为\\
+\begin{equation}
+\begin{aligned}
+S_{yrz}(f) &= {\left| S_p(f) \right|}^2 S_x(f) \\
+&= \frac{T_b}{4} sinc^2(\pi f T_b/2) \\
+\end{aligned}
+\end{equation}
+
+\hypertarget{header-n26}{%
+\subsubsection{2.6 曼彻斯特码}\label{header-n26}}
+曼彻斯特码的$x(t)$可用双极性非归零码表示,但$p(t)$与之前有所不同\\
+\begin{equation}
+p(t) =\left\{
+\begin{aligned}
+&1, & -T_b/2 < t < 0\\
+&-1, & 0 < t < T_b/2\\
+&0, & others \\
+\end{aligned}
+\right.
+\end{equation}
+\begin{equation}
+\begin{aligned}
+p(f) &= i T_b \frac{sin^2(\pi f T_b/2)}{\pi f T_b/2}\\
+&= i T_b sinc(\pi f T_b/2) sin(\pi f T_b/2)\\
+{\left| S_p(f) \right|}^2 & = T_b^2 sinc^2(\pi f T_b/2) sin^2(\pi f T_b/2)
+\end{aligned}
+\end{equation}
+
+曼彻斯特码的功率谱密度函数为\\
+\begin{equation}
+\begin{aligned}
+S_{yManchester}(f) &= {\left| S_p(f) \right|}^2 S_x(f) \\
+&= T_b sinc^2(\pi f T_b/2) sin^2(\pi f T_b/2) \\
+\end{aligned}
+\end{equation}
+
+\hypertarget{header-n26}{%
+\subsubsection{2.6 N-ASK}\label{header-n26}}
+对于$N-ASK$等概率信源，$a_k$的概率分布为
+
+\begin{equation}
+\begin{aligned}
+P(a_k= \frac{n}{N-1}) = \frac{1}{N}, n \in \{0,\frac{1}{N-1},\cdots,\frac{N-2}{N-1},1\}\\
+\end{aligned}
+\end{equation}
+
+\begin{equation}
+\begin{aligned}
+E[a_n] &= \frac{1}{2}\\
+E[a_n^2] &= \frac{2N-1}{6(N-1)}\\
+D[a_n] &= E[a_n^2] - E^2[a_n]=\frac{2N-1}{6(N-1)} - \frac{1}{4}\\
+\end{aligned}
+\end{equation}
+$T_{sym}$为符号速率
+\begin{equation}
+\begin{aligned}
+T_{sym} = log_2(N) T_b\\
+\end{aligned}
+\end{equation}
+
+$N-ASK$的功率谱密度函数为
+\begin{equation}
+\begin{aligned}
+S_{N-ASK}(f) &= {\left| S_p(f) \right|}^2 S_x(f) \\
+&= T_{sym} sinc^2(\pi f T_{sym}) [(E[a_n^2]- E[a_n]^2) + E[a_n]^2 \frac{1}{T_{sym}} \sum\limits_{\substack{k=-\infty}}^{\infty} \delta(f-\frac{k}{T_{sym}})]\\
+&= (E[a_n^2]- E[a_n]^2) T_{sym} sinc^2(\pi f T_{sym}) + E[a_n]^2 \delta(f)\\
+&= (E[a_n^2]- E[a_n]^2) log_2(N) T_b sinc^2(\pi f log_2(N) T_b) + E[a_n]^2 \delta(f)\\
+&= (\frac{2N-1}{6(N-1)} - \frac{1}{4}) log_2(N) T_b sinc^2(\pi f log_2(N) T_b) + \frac{1}{4} \delta(f)\\
+\end{aligned}
+\end{equation}
+
+
+\hypertarget{header-n26}{%
+\subsubsection{2.6 nPSK}\label{header-n26}}
+\hypertarget{header-n26}{%
+\subsubsection{2.6 nQAM}\label{header-n26}}
+\hypertarget{header-n26}{%
+\subsubsection{2.6 OFDM}\label{header-n26}}
+
+
+\newpage
+\hypertarget{header-n322}{%
+\subsection{参考文献}\label{header-n322}}
+
+{[}1{]} 曹志刚, 钱亚生. 现代通信原理{[}M{]}. 清华大学出版社有限公司,
+1992.
+
+{[}2{]} CRC16-CCITT by Joe Geluso
+\url{http://srecord.sourceforge.net/crc16-ccitt.html#refs}
+
+{[}3{]} CRC calculation, by Sven Reifegerste
+\url{http://www.zorc.breitbandkatze.de/crc.html}
+
+{[}4{]} "A Painless Guide to CRC Error Detection Algorithms" by Ross N.
+Williams. \url{https://www.zlib.net/crc_v3.txt}
+
+{[}5{]} Cyclic redundancy check
+\url{https://en.wikipedia.org/wiki/Cyclic_redundancy_check}
+
+{[}6{]} CRC RevEng
+\url{http://reveng.sourceforge.net/crc-catalogue/16.htm#crc.cat.crc-16-kermit}
+
+\end{document}
